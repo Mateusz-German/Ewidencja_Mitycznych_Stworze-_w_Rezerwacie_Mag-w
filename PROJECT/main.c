@@ -11,7 +11,19 @@ int main(void) {
         NIEBEZPIECZNY
     };
 
+    Stworzenie s2 = {
+        "Fenix",
+        "Feniks",
+        70,
+        4,
+        "2243-06-10",
+        STABILNY
+    };
+
+
     printStworzenie(&s);
+    printStworzenie(&s2);
+
 
     return 0;
 }

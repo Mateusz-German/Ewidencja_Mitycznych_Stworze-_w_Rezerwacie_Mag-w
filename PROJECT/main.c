@@ -19,10 +19,17 @@ int main(void) {
         "2243-06-10",
         STABILNY
     };
+    s.next = &s2;
+    s2.next = NULL;
 
 
-    printStworzenie(&s);
-    printStworzenie(&s2);
+    Stworzenie* aktualne = &s;
+
+    while (aktualne != NULL) {
+        printStworzenie(aktualne);
+        aktualne = aktualne->next;
+    }
+
 
 
     return 0;

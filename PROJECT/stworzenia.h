@@ -15,13 +15,15 @@ typedef enum {
     KWARANTANNA
 } StatusStworzenia;
 
-typedef struct {
+typedef struct Stworzenie {
     char imie[imie_dlugosc];
     char gatunek[gatunek_dlugosc];
     int poziom_mocy;
     int poziom_niebezpieczenstwa;
     char data_karmienia[data_dlugosc];
     StatusStworzenia status;
+
+    struct Stworzenie* next;
 } Stworzenie;
 
 const char* statusNaString(StatusStworzenia status);

@@ -29,4 +29,14 @@ typedef struct Stworzenie {
 const char* statusNaString(StatusStworzenia status);
 void printStworzenie(const Stworzenie* s);
 
+Stworzenie* utworzStworzenie(
+    const char* imie,
+    const char* gatunek,
+    int moc,
+    int niebezpieczenstwo,
+    const char* data,
+    StatusStworzenia status
+);
+
+
 #endif

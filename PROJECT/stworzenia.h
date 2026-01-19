@@ -24,5 +24,7 @@ typedef struct {
     StatusStworzenia status;
 } Stworzenie;
 
+const char* statusNaString(StatusStworzenia status);
+void printStworzenie(const Stworzenie* s);
 
 #endif

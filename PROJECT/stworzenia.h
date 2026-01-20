@@ -43,6 +43,7 @@ void zwolnijListe(Stworzenie* lista);
 void znajdzPoImieniu(Stworzenie* lista, const char* imie);
 void znajdzPoNiebezpieczenstwie(Stworzenie* lista, int min_poziom);
 Stworzenie* kopiujListe(Stworzenie* lista);
+void sortujPoImieniu(Stworzenie* lista);
 
 
 

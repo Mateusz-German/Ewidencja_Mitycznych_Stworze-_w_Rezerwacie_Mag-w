@@ -61,6 +61,19 @@ int main(void) {
         printStworzenie(tmp2);
         tmp2 = tmp2->next;
     }
+    printf("\nProba usuniecia Smauga:\n");
+    usunStworzenie(&lista, "Smaug");
+
+    printf("\nProba usuniecia Fenixa:\n");
+    usunStworzenie(&lista, "Fenix");
+
+    printf("\nLista po probach usuniecia:\n");
+    Stworzenie* t = lista;
+    while (t != NULL) {
+        printStworzenie(t);
+            t = t->next;
+    }
+
 
 
 

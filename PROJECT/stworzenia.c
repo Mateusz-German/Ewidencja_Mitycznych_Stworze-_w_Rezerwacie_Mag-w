@@ -73,3 +73,20 @@ void zwolnijListe(Stworzenie* lista) {
 }
 
 
+void znajdzPoImieniu(Stworzenie* lista, const char* imie) {
+    int znaleziono = 0;
+
+    while (lista != NULL) {
+        if (strcmp(lista->imie, imie) == 0) {
+            printStworzenie(lista);
+            znaleziono = 1;
+        }
+        lista = lista->next;
+    }
+
+    if (!znaleziono) {
+        printf("Nie znaleziono stworzenia o imieniu: %s\n", imie);
+    }
+}
+
+

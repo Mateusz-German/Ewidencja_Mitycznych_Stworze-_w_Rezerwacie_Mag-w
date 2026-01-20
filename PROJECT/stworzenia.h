@@ -40,6 +40,7 @@ Stworzenie* utworzStworzenie(
 );
 
 void zwolnijListe(Stworzenie* lista);
+void znajdzPoImieniu(Stworzenie* lista, const char* imie);
 
 
 

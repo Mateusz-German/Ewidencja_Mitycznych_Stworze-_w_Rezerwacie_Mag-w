@@ -249,6 +249,42 @@ Stworzenie* wczytajZPliku(const char* nazwa_pliku) {
     return lista;
 }
 
+int usunStworzenie(Stworzenie** lista, const char* imie) {
+    if (*lista == NULL) {
+        return 0;
+    }
+
+    Stworzenie* aktualne = *lista;
+    Stworzenie* poprzednie = NULL;
+
+    while (aktualne != NULL) {
+        if (strcmp(aktualne->imie, imie) == 0) {
+
+            if (aktualne->status == NIEBEZPIECZNY) {
+                printf("Nie mozna usunac stworzenia '%s' - status NIEBEZPIECZNY\n", imie);
+                return 0;
+            }
+
+            if (poprzednie == NULL) {
+                *lista = aktualne->next;
+            } else {
+                poprzednie->next = aktualne->next;
+            }
+
+            free(aktualne);
+            printf("Stworzenie '%s' zostalo usuniete\n", imie);
+            return 1;
+        }
+
+        poprzednie = aktualne;
+        aktualne = aktualne->next;
+    }
+
+    printf("Nie znaleziono stworzenia '%s'\n", imie);
+    return 0;
+}
+
+
 
 
 

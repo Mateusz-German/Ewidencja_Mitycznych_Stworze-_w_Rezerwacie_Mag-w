@@ -34,6 +34,7 @@ int main(void) {
     }
 
 
+    zwolnijListe(lista);
 
     return 0;
 }

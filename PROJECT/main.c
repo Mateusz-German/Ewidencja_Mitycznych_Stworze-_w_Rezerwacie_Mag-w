@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "stworzenia.h"
 
+
 void wyswietlMenu() {
     printf("\n===== MENU =====\n");
     printf("1. Wyswietl wszystkie stworzenia\n");
@@ -11,13 +12,17 @@ void wyswietlMenu() {
     printf("6. Sortuj po mocy\n");
     printf("7. Zapisz do pliku\n");
     printf("8. Wczytaj z pliku\n");
+    printf("9. Edytuj stworzenie\n");
+    printf("10. Sortuj po imieniu\n");
     printf("0. Wyjscie\n");
     printf("Wybor: ");
 }
 
 
+
 int main(void) {
     int wybor;
+    char nazwaPliku[100];
     Stworzenie* lista = NULL;
 
     do {
@@ -93,13 +98,43 @@ int main(void) {
         }
 
         else if (wybor == 7) {
-            zapiszDoPliku(lista, "stworzenia.txt");
+            printf("Podaj nazwe pliku do zapisu: ");
+            scanf("%s", nazwaPliku);
+            zapiszDoPliku(lista, nazwaPliku);
+
+        }
+        else if (wybor == 8) {
+            printf("Podaj nazwe pliku do odczytu: ");
+            scanf("%s", nazwaPliku);
+
+            Stworzenie* nowa = wczytajZPliku(nazwaPliku);
+            if (nowa != NULL) {
+                zwolnijListe(lista);
+                lista = nowa;
+            }
+
+        }
+        else if (wybor == 9) {
+            char imie[100];
+            printf("Podaj imie stworzenia do edycji: ");
+            scanf("%s", imie);
+            edytujStworzenie(lista, imie);
+        }
+        else if (wybor == 10) {
+            Stworzenie* kopia = kopiujListe(lista);
+            sortujPoImieniu(kopia);
+
+            printf("\nLista posortowana alfabetycznie po imieniu:\n");
+            Stworzenie* tmp = kopia;
+            while (tmp != NULL) {
+                printStworzenie(tmp);
+                tmp = tmp->next;
+            }
+
+            zwolnijListe(kopia);
         }
 
-        else if (wybor == 8) {
-            zwolnijListe(lista);
-            lista = wczytajZPliku("stworzenia.txt");
-        }
+
 
     } while (wybor != 0);
 

@@ -89,4 +89,21 @@ void znajdzPoImieniu(Stworzenie* lista, const char* imie) {
     }
 }
 
+void znajdzPoNiebezpieczenstwie(Stworzenie* lista, int min_poziom) {
+    int znaleziono = 0;
+
+    while (lista != NULL) {
+        if (lista->poziom_niebezpieczenstwa >= min_poziom) {
+            printStworzenie(lista);
+            znaleziono = 1;
+        }
+        lista = lista->next;
+    }
+
+    if (!znaleziono) {
+        printf("Brak stworzen o poziomie niebezpieczenstwa >= %d\n", min_poziom);
+    }
+}
+
+
 

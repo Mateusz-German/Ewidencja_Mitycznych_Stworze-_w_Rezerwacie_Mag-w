@@ -212,6 +212,44 @@ void zapiszDoPliku(Stworzenie* lista, const char* nazwa_pliku) {
     fclose(plik);
 }
 
+Stworzenie* wczytajZPliku(const char* nazwa_pliku) {
+    FILE* plik = fopen(nazwa_pliku, "r");
+    if (plik == NULL) {
+        printf("Nie mozna otworzyc pliku do odczytu\n");
+        return NULL;
+    }
+
+    Stworzenie* lista = NULL;
+
+    char imie[100];
+    char gatunek[30];
+    char data[20];
+    int moc, niebezpieczenstwo, status;
+
+    while (fscanf(
+        plik,
+        "%99[^;];%29[^;];%d;%d;%19[^;];%d\n",
+        imie, gatunek, &moc, &niebezpieczenstwo, data, &status
+    ) == 6) {
+        Stworzenie* s = utworzStworzenie(
+            imie,
+            gatunek,
+            moc,
+            niebezpieczenstwo,
+            data,
+            (StatusStworzenia)status
+        );
+
+        if (s != NULL) {
+            dodajNaPoczatek(&lista, s);
+        }
+    }
+
+    fclose(plik);
+    return lista;
+}
+
+
 
 
 

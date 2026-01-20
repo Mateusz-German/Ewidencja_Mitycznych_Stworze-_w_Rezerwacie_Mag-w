@@ -38,5 +38,8 @@ Stworzenie* utworzStworzenie(
     StatusStworzenia status
 );
 
+void dodajNaPoczatek(Stworzenie** lista, Stworzenie* nowy);
+
+
 
 #endif

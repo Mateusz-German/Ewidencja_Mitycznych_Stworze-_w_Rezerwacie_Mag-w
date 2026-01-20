@@ -50,4 +50,14 @@ Stworzenie* utworzStworzenie(
     s->next = NULL;
 
     return s;
+
+void dodajNaPoczatek(Stworzenie** lista, Stworzenie* nowy) {
+    if (nowy == NULL) {
+        return;
+    }
+
+    nowy->next = *lista;
+    *lista = nowy;
+}
+
 }

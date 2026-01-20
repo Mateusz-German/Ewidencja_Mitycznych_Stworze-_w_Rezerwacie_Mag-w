@@ -188,6 +188,30 @@ void sortujPoMocy(Stworzenie* lista) {
     } while (zamiana);
 }
 
+void zapiszDoPliku(Stworzenie* lista, const char* nazwa_pliku) {
+    FILE* plik = fopen(nazwa_pliku, "w");
+    if (plik == NULL) {
+        printf("Nie mozna otworzyc pliku!\n");
+        return;
+    }
+
+    while (lista != NULL) {
+        fprintf(
+            plik,
+            "%s;%s;%d;%d;%s;%d\n",
+            lista->imie,
+            lista->gatunek,
+            lista->poziom_mocy,
+            lista->poziom_niebezpieczenstwa,
+            lista->data_karmienia,
+            lista->status
+        );
+        lista = lista->next;
+    }
+
+    fclose(plik);
+}
+
 
 
 

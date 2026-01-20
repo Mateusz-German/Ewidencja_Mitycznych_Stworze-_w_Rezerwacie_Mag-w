@@ -46,6 +46,9 @@ Stworzenie* kopiujListe(Stworzenie* lista);
 void sortujPoImieniu(Stworzenie* lista);
 void sortujPoMocy(Stworzenie* lista);
 
+void zapiszDoPliku(Stworzenie* lista, const char* nazwa_pliku);
+
+
 
 
 

@@ -158,6 +158,37 @@ void sortujPoImieniu(Stworzenie* lista) {
     } while (zamiana);
 }
 
+void sortujPoMocy(Stworzenie* lista) {
+    if (lista == NULL) return;
+
+    int zamiana;
+    Stworzenie* a;
+    Stworzenie* b;
+
+    do {
+        zamiana = 0;
+        a = lista;
+
+        while (a->next != NULL) {
+            b = a->next;
+
+            if (a->poziom_mocy > b->poziom_mocy) {
+                Stworzenie tmp = *a;
+                *a = *b;
+                *b = tmp;
+
+                Stworzenie* t = a->next;
+                a->next = b->next;
+                b->next = t;
+
+                zamiana = 1;
+            }
+            a = a->next;
+        }
+    } while (zamiana);
+}
+
+
 
 
 

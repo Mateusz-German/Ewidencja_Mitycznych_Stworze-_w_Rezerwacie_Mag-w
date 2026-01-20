@@ -51,6 +51,18 @@ int main(void) {
 
     zwolnijListe(kopia);
 
+    zapiszDoPliku(lista, "stworzenia.txt");
+
+    Stworzenie* nowa_lista = wczytajZPliku("stworzenia.txt");
+
+    printf("\nLista wczytana z pliku:\n");
+    Stworzenie* tmp2 = nowa_lista;
+    while (tmp2 != NULL) {
+        printStworzenie(tmp2);
+        tmp2 = tmp2->next;
+    }
+
+
 
 
 

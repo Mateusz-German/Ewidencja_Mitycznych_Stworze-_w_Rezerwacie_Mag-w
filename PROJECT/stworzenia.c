@@ -51,6 +51,8 @@ Stworzenie* utworzStworzenie(
 
     return s;
 
+}
+
 void dodajNaPoczatek(Stworzenie** lista, Stworzenie* nowy) {
     if (nowy == NULL) {
         return;
@@ -60,4 +62,14 @@ void dodajNaPoczatek(Stworzenie** lista, Stworzenie* nowy) {
     *lista = nowy;
 }
 
+void zwolnijListe(Stworzenie* lista) {
+    Stworzenie* tmp;
+
+    while (lista != NULL) {
+        tmp = lista;
+        lista = lista->next;
+        free(tmp);
+    }
 }
+
+

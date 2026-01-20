@@ -28,6 +28,7 @@ typedef struct Stworzenie {
 
 const char* statusNaString(StatusStworzenia status);
 void printStworzenie(const Stworzenie* s);
+void dodajNaPoczatek(Stworzenie** lista, Stworzenie* nowy);
 
 Stworzenie* utworzStworzenie(
     const char* imie,
@@ -38,7 +39,10 @@ Stworzenie* utworzStworzenie(
     StatusStworzenia status
 );
 
-void dodajNaPoczatek(Stworzenie** lista, Stworzenie* nowy);
+void zwolnijListe(Stworzenie* lista);
+
+
+
 
 
 

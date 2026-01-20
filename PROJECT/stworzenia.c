@@ -105,5 +105,27 @@ void znajdzPoNiebezpieczenstwie(Stworzenie* lista, int min_poziom) {
     }
 }
 
+Stworzenie* kopiujListe(Stworzenie* lista) {
+    Stworzenie* nowaLista = NULL;
+    Stworzenie* aktualne = lista;
+
+    while (aktualne != NULL) {
+        Stworzenie* kopia = utworzStworzenie(
+            aktualne->imie,
+            aktualne->gatunek,
+            aktualne->poziom_mocy,
+            aktualne->poziom_niebezpieczenstwa,
+            aktualne->data_karmienia,
+            aktualne->status
+        );
+
+        dodajNaPoczatek(&nowaLista, kopia);
+        aktualne = aktualne->next;
+    }
+
+    return nowaLista;
+}
+
+
 
 

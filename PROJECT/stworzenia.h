@@ -49,6 +49,7 @@ void sortujPoMocy(Stworzenie* lista);
 void zapiszDoPliku(Stworzenie* lista, const char* nazwa_pliku);
 Stworzenie* wczytajZPliku(const char* nazwa_pliku);
 int usunStworzenie(Stworzenie** lista, const char* imie);
+int edytujStworzenie(Stworzenie* lista, const char* imie);
 
 
 

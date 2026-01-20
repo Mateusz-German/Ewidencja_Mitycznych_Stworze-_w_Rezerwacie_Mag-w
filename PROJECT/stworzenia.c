@@ -283,6 +283,38 @@ int usunStworzenie(Stworzenie** lista, const char* imie) {
     printf("Nie znaleziono stworzenia '%s'\n", imie);
     return 0;
 }
+int edytujStworzenie(Stworzenie* lista, const char* imie) {
+    while (lista != NULL) {
+        if (strcmp(lista->imie, imie) == 0) {
+
+            printf("Edycja stworzenia: %s\n", imie);
+
+            printf("Nowy gatunek: ");
+            scanf("%s", lista->gatunek);
+
+            printf("Nowy poziom mocy: ");
+            scanf("%d", &lista->poziom_mocy);
+
+            printf("Nowy poziom niebezpieczenstwa: ");
+            scanf("%d", &lista->poziom_niebezpieczenstwa);
+
+            printf("Nowa data karmienia: ");
+            scanf("%s", lista->data_karmienia);
+
+            printf("Nowy status (0-STABILNY, 1-NIESPOKOJNY, 2-AGRESYWNY, 3-NIEBEZPIECZNY, 4-KWARANTANNA): ");
+            int status;
+            scanf("%d", &status);
+            lista->status = (StatusStworzenia)status;
+
+            printf("Stworzenie zostalo zaktualizowane\n");
+            return 1;
+        }
+        lista = lista->next;
+    }
+
+    printf("Nie znaleziono stworzenia o imieniu: %s\n", imie);
+    return 0;
+}
 
 
 

@@ -1,86 +1,110 @@
 #include <stdio.h>
 #include "stworzenia.h"
 
+void wyswietlMenu() {
+    printf("\n===== MENU =====\n");
+    printf("1. Wyswietl wszystkie stworzenia\n");
+    printf("2. Dodaj stworzenie\n");
+    printf("3. Usun stworzenie\n");
+    printf("4. Wyszukaj po imieniu\n");
+    printf("5. Wyszukaj po poziomie niebezpieczenstwa\n");
+    printf("6. Sortuj po mocy\n");
+    printf("7. Zapisz do pliku\n");
+    printf("8. Wczytaj z pliku\n");
+    printf("0. Wyjscie\n");
+    printf("Wybor: ");
+}
+
 
 int main(void) {
+    int wybor;
     Stworzenie* lista = NULL;
-    Stworzenie* s1 = utworzStworzenie(
-        "Smaug",
-        "Smok",
-        95,
-        10,
-        "2243-06-12",
-        NIEBEZPIECZNY
-        );
 
-    Stworzenie* s2 = utworzStworzenie(
-        "Fenix",
-        "Feniks",
-        70,
-        4,
-        "2243-06-10",
-        STABILNY
-    );
+    do {
+        wyswietlMenu();
+        scanf("%d", &wybor);
 
-    dodajNaPoczatek(&lista, s1);
-    dodajNaPoczatek(&lista, s2);
+        if (wybor == 1) {
+            Stworzenie* tmp = lista;
+            while (tmp != NULL) {
+                printStworzenie(tmp);
+                tmp = tmp->next;
+            }
+        }
 
+        else if (wybor == 2) {
+            char imie[100], gatunek[30], data[20];
+            int moc, niebezp, status;
 
-    Stworzenie* aktualne = lista;
+            printf("Imie: ");
+            scanf("%s", imie);
+            printf("Gatunek: ");
+            scanf("%s", gatunek);
+            printf("Moc: ");
+            scanf("%d", &moc);
+            printf("Niebezpieczenstwo: ");
+            scanf("%d", &niebezp);
+            printf("Data karmienia: ");
+            scanf("%s", data);
+            printf("Status (0-STABILNY, 1-NIESPOKOJNY, 2-AGRESYWNY, 3-NIEBEZPIECZNY, 4-KWARANTANNA): ");
+            scanf("%d", &status);
 
-    while (aktualne != NULL) {
-        printStworzenie(aktualne);
-        aktualne = aktualne->next;
-    }
+            Stworzenie* s = utworzStworzenie(
+                imie, gatunek, moc, niebezp, data, (StatusStworzenia)status
+            );
 
-    printf("\nWyszukiwanie po imieniu:\n");
-    znajdzPoImieniu(lista, "Smaug");
-    printf("\nWyszukiwanie po poziomie niebezpieczenstwa >= 5:\n");
-    znajdzPoNiebezpieczenstwie(lista, 5);
+            if (s != NULL) {
+                dodajNaPoczatek(&lista, s);
+            }
+        }
 
-    printf("\nLista posortowana alfabetycznie po imieniu:\n");
+        else if (wybor == 3) {
+            char imie[100];
+            printf("Podaj imie do usuniecia: ");
+            scanf("%s", imie);
+            usunStworzenie(&lista, imie);
+        }
 
-    Stworzenie* kopia = kopiujListe(lista);
-    sortujPoImieniu(kopia);
+        else if (wybor == 4) {
+            char imie[100];
+            printf("Podaj imie: ");
+            scanf("%s", imie);
+            znajdzPoImieniu(lista, imie);
+        }
 
-    Stworzenie* tmp = kopia;
-    while (tmp != NULL) {
-        printStworzenie(tmp);
-        tmp = tmp->next;
-    }
+        else if (wybor == 5) {
+            int min;
+            printf("Minimalny poziom niebezpieczenstwa: ");
+            scanf("%d", &min);
+            znajdzPoNiebezpieczenstwie(lista, min);
+        }
 
-    zwolnijListe(kopia);
+        else if (wybor == 6) {
+            Stworzenie* kopia = kopiujListe(lista);
+            sortujPoMocy(kopia);
 
-    zapiszDoPliku(lista, "stworzenia.txt");
+            Stworzenie* tmp = kopia;
+            while (tmp != NULL) {
+                printStworzenie(tmp);
+                tmp = tmp->next;
+            }
 
-    Stworzenie* nowa_lista = wczytajZPliku("stworzenia.txt");
+            zwolnijListe(kopia);
+        }
 
-    printf("\nLista wczytana z pliku:\n");
-    Stworzenie* tmp2 = nowa_lista;
-    while (tmp2 != NULL) {
-        printStworzenie(tmp2);
-        tmp2 = tmp2->next;
-    }
-    printf("\nProba usuniecia Smauga:\n");
-    usunStworzenie(&lista, "Smaug");
+        else if (wybor == 7) {
+            zapiszDoPliku(lista, "stworzenia.txt");
+        }
 
-    printf("\nProba usuniecia Fenixa:\n");
-    usunStworzenie(&lista, "Fenix");
+        else if (wybor == 8) {
+            zwolnijListe(lista);
+            lista = wczytajZPliku("stworzenia.txt");
+        }
 
-    printf("\nLista po probach usuniecia:\n");
-    Stworzenie* t = lista;
-    while (t != NULL) {
-        printStworzenie(t);
-            t = t->next;
-    }
-
-
-
-
-
-
+    } while (wybor != 0);
 
     zwolnijListe(lista);
+
 
     return 0;
 }
